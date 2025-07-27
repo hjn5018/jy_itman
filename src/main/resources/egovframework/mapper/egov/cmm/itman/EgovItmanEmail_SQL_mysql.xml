@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovItmanEmailCodeDAO">
+	<select id="countEmail" parameterType="String" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			ITM_MEMBER
+		WHERE
+			MEM_MAIL = #{memMail} 
+			AND DEL_YN = 'N'
+	</select>
+	
+	<insert id="insertEmailCode" parameterType="egovItmanEmailCodeVO">
+		INSERT INTO
+			ITM_EMAIL_CODE
+			(EMAIL, MEM_NAME, EC_NUM, EC_MODE, REG_DATE)
+		VALUES
+			(#{email}, #{memName}, #{ecNum}, #{ecMode}, #{regDate})
+	</insert>
+</mapper>

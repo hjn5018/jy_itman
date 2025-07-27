@@ -1,0 +1,1 @@
+<footer>COPYRIGHT 2022 ITMan ALL RIGHT RESERVED.</footer>

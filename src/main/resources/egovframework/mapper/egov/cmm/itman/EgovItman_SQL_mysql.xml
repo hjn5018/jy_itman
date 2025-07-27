@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="EgovItmanEmployeeDAO">
+	<select id="selectEmployeeList" resultType="EgovItmanEmployeeVO">
+			SELECT
+				EMP_IDX as empIdx,
+				EMP_NUM as empNum,
+				EMP_NAME as empName,
+				DIV_IDX as divIdx,
+				POS_IDX as posIdx,
+				EMP_MAIL as empMail,
+				EMP_TEL as empTel,
+				EMP_ST_IDX as empStIdx
+			FROM
+				ITM_EMPLOYE
+			WHERE
+				DEL_YN = 'N'
+			ORDER BY
+				EMP_IDX DESC
+			LIMIT 2
+	</select>
+	
+	<insert id="insertEmployee" parameterType="EgovItmanEmployeeVO">
+			INSERT INTO
+				ITM_EMPLOYE
+				(EMP_NUM, EMP_NAME, EMP_MAIL, EMP_TEL, DIV_IDX, POS_IDX, EMP_ST_IDX, GRO_IDX, REG_DATE, REG_IDX)
+			VALUES
+				(#{empNum}, #{empName}, #{empMail}, #{empTel}, #{divIdx}, #{posIdx}, #{empStIdx}, 11, now(), 987)
+	</insert>
+	
+	<select id="selectEmployee" parameterType="EgovItmanEmployeeVO" resultType="EgovItmanEmployeeVO">
+			SELECT
+				EMP_IDX as empIdx,
+				EMP_NUM as empNum,
+				EMP_NAME as empName,
+				DIV_IDX as divIdx,
+				POS_IDX as posIdx,
+				EMP_MAIL as empMail,
+				EMP_TEL as empTel,
+				EMP_ST_IDX as empStIdx
+			FROM
+				ITM_EMPLOYE
+			WHERE
+				EMP_IDX = #{empIdx}
+	</select>
+	
+	<update id="deleteEmployee" parameterType="EgovItmanEmployeeVO">
+			UPDATE
+				ITM_EMPLOYE
+			SET
+				DEL_YN = 'Y',
+				DEL_IDX = 987,
+				DEL_DATE = now()
+			WHERE
+				EMP_IDX = #{empIdx}
+	</update>
+	
+	<update id="updateEmployee" parameterType="map">
+    UPDATE 
+    	ITM_EMPLOYE
+    SET
+        <choose>
+            <when test="field == 'empNum'">
+                EMP_NUM = #{vo.empNum},
+            </when>
+            <when test="field == 'empName'">
+                EMP_NAME = #{vo.empName},
+            </when>
+            <when test="field == 'empMail'">
+                EMP_MAIL = #{vo.empMail},
+            </when>
+            <when test="field == 'empTel'">
+                EMP_TEL = #{vo.empTel},
+            </when>
+            <when test="field == 'divIdx'">
+                DIV_IDX = #{vo.divIdx},
+            </when>
+            <when test="field == 'posIdx'">
+                POS_IDX = #{vo.posIdx},
+            </when>
+            <when test="field == 'empStIdx'">
+                EMP_ST_IDX = #{vo.empStIdx},
+            </when>
+            <!-- 필요시 추가 -->
+        </choose>
+        MOD_DATE = now(),
+        MOD_IDX = 987
+    WHERE
+    	EMP_IDX = #{vo.empIdx}
+</update>
+</mapper>
