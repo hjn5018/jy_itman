@@ -3,6 +3,7 @@ package egovframework.itman.member.web;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,13 +17,15 @@ public class EgovItmanMemberController {
 	@Resource(name = "egovItmanEmailService")
 	private EgovItmanEmailService egovItmanEmailService;
 	
-	@RequestMapping("/user/join01.do")
+	@RequestMapping("html/user/join01.do")
 	public String signUp01() {
+		
 		return "itman/html/user/join01";
 	}
 
-	@RequestMapping("/user/join02.do")
+	@RequestMapping("html/user/join02.do")
 	public String signUp02() {
+		
 		return "itman/html/user/join02";
 	}
 	
@@ -35,6 +38,13 @@ public class EgovItmanMemberController {
 			return "2"; // 이메일 형식 오류
 
 		boolean exists = egovItmanEmailService.verifyEmail(email);
+		
 		return exists ? "1" : "0"; // 1=중복, 0=사용 가능
+	}
+	
+	@RequestMapping("html/user/certPass.do")
+	public String certPass(Model model) {
+		
+		return "itman/html/user/certPass";
 	}
 }

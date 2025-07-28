@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.itman.email.service.EgovItmanEmailService;
 import egovframework.itman.email.service.EgovItmanEmailVO;
@@ -18,9 +19,14 @@ public class EgovItmanEmailController {
 	private EgovItmanEmailService egovItmanEmailService;
 
 	@RequestMapping("/user/sendEmailProc.do")
-	public String sendEmailProc(EgovItmanMemberVO vo, @RequestParam("mode") String mode,
-			@RequestParam("userphone1") String userphone1, @RequestParam("userphone1") String userphone2,
-			@RequestParam("userphone1") String userphone3, Model model) {
+	public String sendEmailProc(
+			EgovItmanMemberVO vo,
+			@RequestParam("mode") String mode,
+			@RequestParam("userphone1") String userphone1,
+			@RequestParam("userphone1") String userphone2,
+			@RequestParam("userphone1") String userphone3,
+			Model model,
+			RedirectAttributes redirectAttributes) {
 
 		if (vo.getMemTel() == null || vo.getMemTel().isEmpty()) {
 			vo.setMemTel(userphone1 + userphone2 + userphone3);
@@ -33,10 +39,15 @@ public class EgovItmanEmailController {
 
 		EgovItmanEmailVO egovItmanEmailVO = egovItmanEmailService.sendEmailCode(vo, mode);
 
-		model.addAttribute("userVO", vo);
-		model.addAttribute("egovItmanEmailVO", egovItmanEmailVO);
-		model.addAttribute("mode", mode);
-		return "itman/html/user/certPass";
+//		model.addAttribute("userVO", vo);
+//		model.addAttribute("egovItmanEmailVO", egovItmanEmailVO);
+//		model.addAttribute("mode", mode);
+		
+		redirectAttributes.addFlashAttribute("userVO", vo);
+		redirectAttributes.addFlashAttribute("egovItmanEmailVO", egovItmanEmailVO);
+		redirectAttributes.addFlashAttribute("mode", mode);
+		
+		return "redirect:/html/user/certPass.do";
 	}
 
 }
