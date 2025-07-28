@@ -9,10 +9,18 @@ import egovframework.itman.email.service.EgovItmanEmailVO;
 public class EgovItmanEmailDAO extends EgovAbstractMapper{
 	
 	public int countEmail (String memMail) {
+		
 		return selectOne("countEmail", memMail);
 	}
 
 	public void insertEmailCode(EgovItmanEmailVO evo) {
+		
 		insert("insertEmailCode", evo);
 	}
+
+	public EgovItmanEmailVO selectRegDate(EgovItmanEmailVO emailVO) {
+		
+		return selectOne("selectRegDate", emailVO);
+	}
+	
 }

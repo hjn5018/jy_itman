@@ -19,4 +19,18 @@
 		VALUES
 			(#{email}, #{memName}, #{ecNum}, #{ecMode}, #{regDate})
 	</insert>
+	
+	<select id="selectRegDate" parameterType="egovItmanEmailCodeVO" resultType="egovItmanEmailCodeVO">
+		SELECT
+			REG_DATE AS regDate
+		FROM
+			ITM_EMAIL_CODE
+		WHERE
+			EMAIL = #{email} AND MEM_NAME = #{memName}
+		ORDER BY 
+			REG_DATE DESC
+		LIMIT
+			1
+	</select>
+	
 </mapper>

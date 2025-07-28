@@ -10,25 +10,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import egovframework.itman.email.service.EgovItmanEmailService;
+import egovframework.itman.email.service.EgovItmanEmailVO;
 
 @Controller
 public class EgovItmanMemberController {
 
 	@Resource(name = "egovItmanEmailService")
 	private EgovItmanEmailService egovItmanEmailService;
-	
+
 	@RequestMapping("html/user/join01.do")
 	public String signUp01() {
-		
+
 		return "itman/html/user/join01";
 	}
 
 	@RequestMapping("html/user/join02.do")
 	public String signUp02() {
-		
+
 		return "itman/html/user/join02";
 	}
-	
+
 	@PostMapping("/itman/user/emailCheck.do")
 	@ResponseBody
 	public String idCheck(@RequestParam("email") String email) {
@@ -38,13 +39,8 @@ public class EgovItmanMemberController {
 			return "2"; // 이메일 형식 오류
 
 		boolean exists = egovItmanEmailService.verifyEmail(email);
-		
+
 		return exists ? "1" : "0"; // 1=중복, 0=사용 가능
 	}
-	
-	@RequestMapping("html/user/certPass.do")
-	public String certPass(Model model) {
-		
-		return "itman/html/user/certPass";
-	}
+
 }

@@ -14,19 +14,14 @@ import egovframework.itman.member.service.EgovItmanMemberVO;
 
 @Controller
 public class EgovItmanEmailController {
-	
+
 	@Resource(name = "egovItmanEmailService")
 	private EgovItmanEmailService egovItmanEmailService;
 
 	@RequestMapping("/user/sendEmailProc.do")
-	public String sendEmailProc(
-			EgovItmanMemberVO vo,
-			@RequestParam("mode") String mode,
-			@RequestParam("userphone1") String userphone1,
-			@RequestParam("userphone1") String userphone2,
-			@RequestParam("userphone1") String userphone3,
-			Model model,
-			RedirectAttributes redirectAttributes) {
+	public String sendEmailProc(EgovItmanMemberVO vo, @RequestParam("mode") String mode,
+			@RequestParam("userphone1") String userphone1, @RequestParam("userphone2") String userphone2,
+			@RequestParam("userphone3") String userphone3, Model model, RedirectAttributes redirectAttributes) {
 
 		if (vo.getMemTel() == null || vo.getMemTel().isEmpty()) {
 			vo.setMemTel(userphone1 + userphone2 + userphone3);
@@ -39,15 +34,22 @@ public class EgovItmanEmailController {
 
 		EgovItmanEmailVO egovItmanEmailVO = egovItmanEmailService.sendEmailCode(vo, mode);
 
-//		model.addAttribute("userVO", vo);
-//		model.addAttribute("egovItmanEmailVO", egovItmanEmailVO);
-//		model.addAttribute("mode", mode);
-		
 		redirectAttributes.addFlashAttribute("userVO", vo);
 		redirectAttributes.addFlashAttribute("egovItmanEmailVO", egovItmanEmailVO);
 		redirectAttributes.addFlashAttribute("mode", mode);
-		
+
 		return "redirect:/html/user/certPass.do";
+	}
+
+	@RequestMapping("html/user/certPass.do")
+	public String certPass(Model model) {
+
+		EgovItmanEmailVO emailVO = (EgovItmanEmailVO) model.getAttribute("egovItmanEmailVO");
+		EgovItmanEmailVO regDate = egovItmanEmailService.selectRegDate(emailVO);
+
+		model.addAttribute("regDate", regDate);
+
+		return "itman/html/user/certPass";
 	}
 
 }

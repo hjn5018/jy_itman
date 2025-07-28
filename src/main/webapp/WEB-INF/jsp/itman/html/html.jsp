@@ -16,7 +16,7 @@
 			</h1>
 		</div>
 		<p class="h_right_index">
-			<a href="./user/login.do">로그인</a> <a href="./user/join01.do"
+			<a href="./user/login.do">로그인</a> <a href="./html/user/join01.do"
 				class="join">회원가입</a>
 		</p>
 

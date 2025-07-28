@@ -8,4 +8,6 @@ public interface EgovItmanEmailService {
 
 	EgovItmanEmailVO sendEmailCode(EgovItmanMemberVO vo, String mode);
 
+	EgovItmanEmailVO selectRegDate(EgovItmanEmailVO emailVO);
+	
 }

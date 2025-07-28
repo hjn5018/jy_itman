@@ -68,6 +68,14 @@ public class EgovItmanEmailServiceImpl implements EgovItmanEmailService {
 		}
 		
 		egovItmanEmailDAO.insertEmailCode(evo);
+		
 		return evo;
 	}
+
+	@Override
+	public EgovItmanEmailVO selectRegDate(EgovItmanEmailVO emailVO) {
+		
+		return egovItmanEmailDAO.selectRegDate(emailVO);
+	}
+
 }
