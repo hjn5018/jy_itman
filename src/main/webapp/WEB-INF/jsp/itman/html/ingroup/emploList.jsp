@@ -152,7 +152,7 @@
 		</div>
 		
 		<!-- 글쓰기 버튼-->
-        <p class="addContent"><a href="/html/ingroup/emploWrite.do"><span></span><span></span><span></span></a></p>
+        <p class="addContent"><a href="<c:url value='/html/ingroup/emploWrite.do' />"><span></span><span></span><span></span></a></p>
 		    <div class="Basic">
 			<ul class="adminList click">
 
@@ -167,7 +167,8 @@
 				</li>
 			
 			<c:forEach var="vo" items="${employeeVOList }">
-				<li onclick="location.href='/html/ingroup/emploView.do?empIdx=${vo.empIdx }'">
+<%-- 				<li onclick="location.href='${pageContext.request.contextPath }/html/ingroup/emploView.do?empIdx=${vo.empIdx }'"> --%>
+				<li onclick="location.href='<c:url value="/html/ingroup/emploView.do" />?empIdx=${vo.empIdx }'">
 					<p>${vo.empNum }</p>
 					<p>${vo.empName }</p>
 					<div class="depSpot">

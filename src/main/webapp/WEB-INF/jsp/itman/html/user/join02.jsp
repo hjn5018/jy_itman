@@ -68,7 +68,7 @@
         $(document).ready(function(){
         	$(".fadeInfirst").on("keyup", function(){
         	    var email = $(this).val();
-        	    $.post("${pageContext.request.contextPath}/itman/user/emailCheck.do", { email: email }, function(data){
+        	    $.post("${pageContext.request.contextPath}/html/user/emailCheck.do", { email: email }, function(data){
         	        if(data == "0"){
         	            $("#emailCheck").html("<span class='true'>사용가능한 이메일입니다</span>");
         	        } else if(data == "1"){

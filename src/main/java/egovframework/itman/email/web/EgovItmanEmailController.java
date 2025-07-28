@@ -19,9 +19,14 @@ public class EgovItmanEmailController {
 	private EgovItmanEmailService egovItmanEmailService;
 
 	@RequestMapping("/user/sendEmailProc.do")
-	public String sendEmailProc(EgovItmanMemberVO vo, @RequestParam("mode") String mode,
-			@RequestParam("userphone1") String userphone1, @RequestParam("userphone2") String userphone2,
-			@RequestParam("userphone3") String userphone3, Model model, RedirectAttributes redirectAttributes) {
+	public String sendEmailProc(
+			EgovItmanMemberVO vo,
+			@RequestParam("mode") String mode,
+			@RequestParam("userphone1") String userphone1, 
+			@RequestParam("userphone2") String userphone2,
+			@RequestParam("userphone3") String userphone3,
+			Model model, 
+			RedirectAttributes redirectAttributes) {
 
 		if (vo.getMemTel() == null || vo.getMemTel().isEmpty()) {
 			vo.setMemTel(userphone1 + userphone2 + userphone3);

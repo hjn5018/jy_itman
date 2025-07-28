@@ -20,13 +20,16 @@ public class EgovItmanEmloyeeController {
 	
 	@RequestMapping("/html/ingroup/emploList.do")
 	public String emploList(Model model) {
+		
 		List<EgovItmanEmployeeVO> employeeVOList = egovItmanEmployeeService.selectEmployeeList();
 		model.addAttribute("employeeVOList", employeeVOList);
+		
 		return "itman/html/ingroup/emploList";
 	}
 
 	@RequestMapping("/html/ingroup/emploWrite.do")
 	public String emploWrite(Model model) {
+		
 		return "itman/html/ingroup/emploWrite";
 	}
 
@@ -34,6 +37,7 @@ public class EgovItmanEmloyeeController {
 	public String emploWriteProc(EgovItmanEmployeeVO vo, Model model) {
 
 		egovItmanEmployeeService.insertEmployee(vo);
+		
 		return "redirect:/html/ingroup/emploList.do";
 	}
 
@@ -42,6 +46,7 @@ public class EgovItmanEmloyeeController {
 
 		EgovItmanEmployeeVO resultVO = egovItmanEmployeeService.selectEmployee(vo);
 		model.addAttribute("vo", resultVO);
+		
 		return "itman/html/ingroup/emploView";
 	}
 
@@ -50,6 +55,7 @@ public class EgovItmanEmloyeeController {
 
 		model.addAttribute("vo", vo);
 		model.addAttribute("field", field);
+		
 		return "itman/html/popup/employee/emploFieldEdit";
 	}
 
@@ -58,6 +64,7 @@ public class EgovItmanEmloyeeController {
 
 		egovItmanEmployeeService.updateEmployeeField(vo, field);
 		model.addAttribute("field", field);
+		
 		return "itman/html/popup/employee/emploFieldEditProc";
 	}
 
@@ -65,6 +72,7 @@ public class EgovItmanEmloyeeController {
 	public String emploDel(EgovItmanEmployeeVO vo, Model model) {
 
 		model.addAttribute("vo", vo);
+		
 		return "itman/html/popup/employee/emploDel";
 	}
 
@@ -72,6 +80,7 @@ public class EgovItmanEmloyeeController {
 	public String emploDelProc(EgovItmanEmployeeVO vo) {
 
 		egovItmanEmployeeService.deleteEmployee(vo);
+		
 		return "itman/html/popup/employee/emploDelProc";
 	}
 }

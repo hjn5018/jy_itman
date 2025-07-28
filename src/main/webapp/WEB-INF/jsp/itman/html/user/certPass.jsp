@@ -9,11 +9,12 @@
 <%
 String nextPage = "";
 String mode = (String) request.getAttribute("mode");
+String contextPath = request.getContextPath();
 
 if ("회원가입".equals(mode)) {
-	nextPage = "join_proc.do";
+	nextPage = contextPath + "/html/user/joinProc.do";
 } else if ("비밀번호찾기".equals(mode)) {
-	nextPage = "comPass.do";
+	nextPage = contextPath + "/html/user/comPass.do";
 }
 request.setAttribute("nextPage", nextPage);
 %>
@@ -63,12 +64,11 @@ request.setAttribute("nextPage", nextPage);
 function fn_submit(){
 
     var now = new Date();
-    if(now < $("#verCode").val().trim()){
-		alert("인증시간이 초과했습니다. 다시 입력해주세요");
-		history.back();
-		return false;
-	}
-
+    console.log("now: " + now);
+    
+    var verCode = $("#verCode").val().trim();
+    console.log("verCode: " + verCode);
+    
     if($("#verCode").val().trim() == ""){
 		alert("인증번호를 입력해주세요.");
 		$("#verCode").focus();

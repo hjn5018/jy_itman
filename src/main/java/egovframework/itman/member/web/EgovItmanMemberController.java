@@ -30,7 +30,7 @@ public class EgovItmanMemberController {
 		return "itman/html/user/join02";
 	}
 
-	@PostMapping("/itman/user/emailCheck.do")
+	@PostMapping("/html/user/emailCheck.do")
 	@ResponseBody
 	public String idCheck(@RequestParam("email") String email) {
 		if (email == null || email.trim().isEmpty())
@@ -41,6 +41,12 @@ public class EgovItmanMemberController {
 		boolean exists = egovItmanEmailService.verifyEmail(email);
 
 		return exists ? "1" : "0"; // 1=중복, 0=사용 가능
+	}
+	
+	@RequestMapping("/html/user/joinProc.do")
+	public String joinProc() {
+		
+		return "itman/html/user/joinProc";
 	}
 
 }
