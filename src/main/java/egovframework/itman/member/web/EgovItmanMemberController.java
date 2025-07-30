@@ -97,4 +97,10 @@ public class EgovItmanMemberController {
 			return "redirect:/html/user/login.do"; // 로그인 실패 시 로그인 페이지로 리다이렉트
 		}
 	}
+	
+	@RequestMapping("html/user/logoutProc.do")
+	public String logoutProc(HttpServletRequest request) {
+		request.getSession().invalidate();
+		return "redirect:/html.do";
+	}
 }

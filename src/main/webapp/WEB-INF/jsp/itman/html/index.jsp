@@ -31,10 +31,9 @@
 			<div class="h_right">
                 <a href="#" class="hr_btn"><span></span><span></span><span></span></a>
                 <p class="hr_box">
-                    <%-- <span><?php echo $_SESSION["username"]; ?>님</span>--%>
                     <span><c:out value="${loginVO.memName }" />님</span>
-                    <a href="./user/mypage.do" class="btn mypage">마이페이지</a>
-                    <a href="./user/logout.do" class="btn logout">로그아웃</a>
+                    <a href="./html/user/mypage.do" class="btn mypage">마이페이지</a>
+                    <a href="./html/user/logoutProc.do" class="btn logout">로그아웃</a>
                     <a href="group.do" class="btn group">전체그룹메인</a>
                        
                 </p>
