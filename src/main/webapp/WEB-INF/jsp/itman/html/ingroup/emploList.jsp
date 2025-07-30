@@ -199,7 +199,7 @@
 					</div>
 					<p class="stat"><?=$row['EMP_ST_NAME']?></p>
 				</li>
-                <?php } if($count == 0) { ?> 
+                <%-- <?php } if($count == 0) { ?> 
                     <div style="text-align:center; margin-top:20px;">
                         일치하는 자료가 없습니다.
                     </div>    
@@ -215,7 +215,7 @@
                 <?php  }?>
                 <a href="<?= $total_page <= $page?$_SERVER["PHP_SELF"].'?page='.$total_page:$_SERVER["PHP_SELF"].'?page='.($page+1);?>" class="next"><img src='../_img/next.png' alt='다음으로'></a>
                 <a href="<?php echo $_SERVER["PHP_SELF"].'?page='.$total_page ;?>" class="next end"><img src='../_img/last.png' alt='맨마지막'></a>
-            </p>
+            </p>--%>
 	</div>
 	<%@ include file="../_inc/footer.jsp" %>
     
