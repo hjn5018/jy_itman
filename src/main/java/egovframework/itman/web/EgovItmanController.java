@@ -8,6 +8,6 @@ public class EgovItmanController {
 
 	@RequestMapping("/html.do")
 	public String mainPage() {
-		return "itman/html/html";
+		return "itman/html/index";
 	}
 }
