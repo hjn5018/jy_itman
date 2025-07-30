@@ -17,16 +17,6 @@ include('./password.jsp');
 
 $hashed = password_hash($_POST["userpw"], PASSWORD_DEFAULT);
 
-$sql = "
-INSERT INTO ITM_MEMBER
-(MEM_NAME, MEM_MAIL, MEM_PW, MEM_TEL, REG_DATE)
-VALUES(
-    '{$_POST['username']}',
-    '{$_POST['useremail']}',
-    '$hashed',
-    '{$_POST['userphone']}',
-    NOW()
-)";
 
 $result = mysqli_query($dbconn,$sql);
 

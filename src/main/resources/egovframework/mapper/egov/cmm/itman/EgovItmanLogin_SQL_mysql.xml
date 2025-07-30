@@ -2,17 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="memberDAO">
 
-	<select id="actionLogin" parameterType="egovframework.itman.member.service.LoginVO" resultType="egovframework.itman.member.service.LoginVO">
+	<select id="actionLogin" parameterType="egovframework.itman.member.service.EgovItmanLoginVO" resultType="egovframework.itman.member.service.EgovItmanLoginVO">
 			SELECT
 				MEM_IDX as memIdx,
 				MEM_NAME as memName,
-				MEM_MAIL as memMail
+				MEM_MAIL as memMail,
+				MEM_PW as memPw
 			FROM
 				ITM_MEMBER
 			WHERE
 				MEM_MAIL = #{memMail}
-			AND MEM_PW = #{memPw}
 			AND DEL_YN = 'N'
 	</select>
-
-</mapper>
+	
+	</mapper>

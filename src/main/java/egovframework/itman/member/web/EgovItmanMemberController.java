@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import egovframework.itman.email.service.EgovItmanEmailService;
 import egovframework.itman.member.service.EgovItmanMemberService;
 import egovframework.itman.member.service.EgovItmanLoginVO;
+import egovframework.itman.member.service.EgovItmanMemberVO;
 
 @Controller
 public class EgovItmanMemberController {
@@ -48,11 +49,23 @@ public class EgovItmanMemberController {
 		return exists ? "1" : "0"; // 1=중복, 0=사용 가능
 	}
 	
-	@RequestMapping("/html/user/joinProc.do")
-	public String joinProc() {
+	/**
+	 * 회원가입을 처리한다.
+	 * @param memberVO - 회원가입 정보
+	 * @param redirectAttributes - RedirectAttributes
+	 * @return String
+	 * @throws Exception
+	 */
+	@PostMapping("/html/user/joinProc.do")
+	public String joinProc(EgovItmanMemberVO memberVO, RedirectAttributes redirectAttributes) throws Exception {
 		
-		return "itman/html/user/joinProc";
+		egovItmanMemberService.insertMember(memberVO);
+		
+		redirectAttributes.addFlashAttribute("message", "회원가입이 완료되었습니다. 로그인해주세요.");
+		
+		return "redirect:/html/user/login.do";
 	}
+
 
 	@RequestMapping("html/user/login.do")
 	public String login() {

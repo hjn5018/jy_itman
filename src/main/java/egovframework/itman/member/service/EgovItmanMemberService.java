@@ -8,6 +8,14 @@ public interface EgovItmanMemberService {
 	 * @return LoginVO
 	 * @exception Exception
 	 */
-    public EgovItmanLoginVO actionLogin(EgovItmanLoginVO vo) throws Exception;
+	EgovItmanLoginVO actionLogin(EgovItmanLoginVO vo) throws Exception;
+
+	/**
+	 * 회원가입을 처리한다
+	 * @param vo EgovItmanMemberVO
+	 * @return String
+	 * @exception Exception
+	 */
+	String insertMember(EgovItmanMemberVO vo) throws Exception;
 
 }
