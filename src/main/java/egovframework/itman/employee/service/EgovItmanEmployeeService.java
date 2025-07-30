@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface EgovItmanEmployeeService {
 
-	List<EgovItmanEmployeeVO> selectEmployeeList();
+	List<EgovItmanEmployeeVO> selectEmployeeList(EgovItmanEmployeeVO vo);
 
 	void insertEmployee(EgovItmanEmployeeVO vo);
 

@@ -46,6 +46,8 @@ public class EgovItmanEmailServiceImpl implements EgovItmanEmailService {
 		evo.setEcMode(mode);
 		evo.setRegDate(LocalDateTime.now().toString());
 		
+		egovItmanEmailDAO.insertEmailCode(evo);
+		
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
@@ -66,8 +68,6 @@ public class EgovItmanEmailServiceImpl implements EgovItmanEmailService {
 			e.printStackTrace();
 			System.err.println("Exception message: " + e.getMessage());
 		}
-		
-		egovItmanEmailDAO.insertEmailCode(evo);
 		
 		return evo;
 	}

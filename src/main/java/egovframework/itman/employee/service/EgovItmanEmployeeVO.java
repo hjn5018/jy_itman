@@ -18,6 +18,8 @@ public class EgovItmanEmployeeVO {
 	private String delYn;
 	private String delIdx;
 	private String delDate;
+	private String search;
+	private String like;
 
 	public String getEmpIdx() {
 		return empIdx;
@@ -146,5 +148,20 @@ public class EgovItmanEmployeeVO {
 	public void setDelDate(String delDate) {
 		this.delDate = delDate;
 	}
+	
+	public String getSearch() {
+		return search;
+	}
 
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
+	public String getLike() {
+		return like;
+	}
+
+	public void setLike(String like) {
+		this.like = like;
+	}
 }

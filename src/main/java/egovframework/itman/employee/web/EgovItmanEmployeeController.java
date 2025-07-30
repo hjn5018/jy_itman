@@ -13,16 +13,25 @@ import egovframework.itman.employee.service.EgovItmanEmployeeService;
 import egovframework.itman.employee.service.EgovItmanEmployeeVO;
 
 @Controller
-public class EgovItmanEmloyeeController {
+public class EgovItmanEmployeeController {
 
 	@Resource(name = "egovItmanEmployeeService")
 	private EgovItmanEmployeeService egovItmanEmployeeService;
 	
 	@RequestMapping("/html/ingroup/emploList.do")
-	public String emploList(Model model) {
-		
-		List<EgovItmanEmployeeVO> employeeVOList = egovItmanEmployeeService.selectEmployeeList();
+	public String emploList(
+			@RequestParam(value = "search", required = false, defaultValue = "") String search,
+			@RequestParam(value = "like", required = false, defaultValue = "") String like,
+			EgovItmanEmployeeVO vo,
+			Model model) {
+
+		vo.setSearch(search);
+		vo.setLike(like);
+
+		List<EgovItmanEmployeeVO> employeeVOList = egovItmanEmployeeService.selectEmployeeList(vo);
 		model.addAttribute("employeeVOList", employeeVOList);
+		model.addAttribute("search", search);
+		model.addAttribute("like", like);
 		
 		return "itman/html/ingroup/emploList";
 	}

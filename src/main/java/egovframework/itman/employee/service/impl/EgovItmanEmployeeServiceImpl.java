@@ -16,10 +16,10 @@ public class EgovItmanEmployeeServiceImpl implements EgovItmanEmployeeService{
 	private EgovItmanEmployeeDAO egovItmanEmployeeDAO;
 	
 	@Override
-	public List<EgovItmanEmployeeVO> selectEmployeeList() {
-		return egovItmanEmployeeDAO.selectEmployeeList();
+	public List<EgovItmanEmployeeVO> selectEmployeeList(EgovItmanEmployeeVO vo) {
+		return egovItmanEmployeeDAO.selectEmployeeList(vo);
 	}
-
+	
 	@Override
 	public void insertEmployee(EgovItmanEmployeeVO vo) {
 		egovItmanEmployeeDAO.insertEmployee(vo);
@@ -40,5 +40,4 @@ public class EgovItmanEmployeeServiceImpl implements EgovItmanEmployeeService{
 		egovItmanEmployeeDAO.updateEmployee(vo, field);
 		
 	}
-
 }

@@ -2,23 +2,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="EgovItmanEmployeeDAO">
-	<select id="selectEmployeeList" resultType="EgovItmanEmployeeVO">
-			SELECT
-				EMP_IDX as empIdx,
-				EMP_NUM as empNum,
-				EMP_NAME as empName,
-				DIV_IDX as divIdx,
-				POS_IDX as posIdx,
-				EMP_MAIL as empMail,
-				EMP_TEL as empTel,
-				EMP_ST_IDX as empStIdx
-			FROM
-				ITM_EMPLOYE
-			WHERE
-				DEL_YN = 'N'
-			ORDER BY
-				EMP_IDX DESC
-			LIMIT 2
+	<select id="selectEmployeeList" parameterType="EgovItmanEmployeeVO" resultType="EgovItmanEmployeeVO">
+		SELECT
+			EMP_IDX as empIdx,
+			EMP_NUM as empNum,
+			EMP_NAME as empName,
+			DIV_IDX as divIdx,
+			POS_IDX as posIdx,
+			EMP_MAIL as empMail,
+			EMP_TEL as empTel,
+			EMP_ST_IDX as empStIdx
+		FROM
+			ITM_EMPLOYE
+		<where>
+			DEL_YN = 'N'
+			<if test="search != null and search != '' and like != null and like != ''">
+				<choose>
+					<when test="search == 'emp'">
+						AND EMP_NUM LIKE CONCAT('%', #{like}, '%')
+					</when>
+					<when test="search == 'name'">
+						AND EMP_NAME LIKE CONCAT('%', #{like}, '%')
+					</when>
+					<when test="search == 'div'">
+						AND DIV_IDX IN (SELECT DIV_IDX FROM ITM_DIVISION WHERE DIV_NAME LIKE CONCAT('%', #{like}, '%'))
+					</when>
+					<otherwise>
+						AND (
+							EMP_NUM LIKE CONCAT('%', #{like}, '%')
+							OR EMP_NAME LIKE CONCAT('%', #{like}, '%')
+							OR DIV_IDX IN (SELECT DIV_IDX FROM ITM_DIVISION WHERE DIV_NAME LIKE CONCAT('%', #{like}, '%'))
+						)
+					</otherwise>
+				</choose>
+			</if>
+		</where>
+		ORDER BY
+			EMP_IDX DESC
+		LIMIT
+			7
 	</select>
 	
 	<insert id="insertEmployee" parameterType="EgovItmanEmployeeVO">

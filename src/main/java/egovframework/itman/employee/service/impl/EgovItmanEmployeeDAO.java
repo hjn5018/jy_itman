@@ -12,8 +12,8 @@ import egovframework.itman.employee.service.EgovItmanEmployeeVO;
 @Repository("egovItmanEmployeeDAO")
 public class EgovItmanEmployeeDAO extends EgovAbstractMapper{
 
-	public List<EgovItmanEmployeeVO> selectEmployeeList() {
-		return selectList("selectEmployeeList");
+	public List<EgovItmanEmployeeVO> selectEmployeeList(EgovItmanEmployeeVO vo) {
+		return selectList("selectEmployeeList", vo);
 	}
 
 	public void insertEmployee(EgovItmanEmployeeVO vo) {

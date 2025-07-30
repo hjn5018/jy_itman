@@ -129,19 +129,19 @@
 	<div id="contents">
 		<div class="tit_search">
 			<h2>직원 관리</h2>
-            <form id="search" method="post" action=<?=$action?>>
-            <input type="hidden" name="page" id="page" value="<?=$_POST['page']=== null?"1":$_POST['page'];?>" />
+<!--             <form id="search" method="post" action=<?=$action?>> -->
+<%--             <input type="hidden" name="page" id="page" value="<?=$_POST['page']=== null?"1":$_POST['page'];?>" /> --%>
+            <form id="search" method="post" action="<c:url value='/html/ingroup/emploList.do' />">
 			<p class="list_search">
 				<select name="search">
-					<option value="all" <?=selectCheck("all")?>>전체</option>
-					<option value="emp" <?=selectCheck("emp")?> >사번</option>
-					<option value="name" <?=selectCheck("name")?> >이름</option>
-					<option value="div" <?=selectCheck("div")?> >부서</option>
+					<option value="all" ${param.search == 'all' ? 'selected' : ''}>전체</option>
+					<option value="emp" ${param.search == 'emp' ? 'selected' : ''}>사번</option>
+					<option value="name" ${param.search == 'name' ? 'selected' : ''}>이름</option>
+					<option value="div" ${param.search == 'div' ? 'selected' : ''}>부서</option>
 				</select>
                 <!-- <input name="like" type="text" placeholder="검색어를 입력해주세요."><a href="javascript:{}" onclick="document.getElementById('search').submit();">검색</a></input>-->
-                <input name="like" type="text" value="<?=$_POST['like']?>" placeholder="검색어를 입력해주세요."><a href="javascript:search.submit()">검색</a></input> 
-                
-            
+<!--                 <input name="like" type="text" value="<?=$_POST['like']?>" placeholder="검색어를 입력해주세요."><a href="javascript:search.submit()">검색</a></input>  -->
+                <input name="like" type="text" value=""<c:out value="${param.like}"/>" placeholder="검색어를 입력해주세요."><a href="javascript:search.submit()">검색</a></input> 
 			</p>
             </form>
 		</div>
