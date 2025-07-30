@@ -3,7 +3,7 @@ package egovframework.itman.member.service.impl;
 import org.egovframe.rte.psl.dataaccess.EgovAbstractMapper;
 import org.springframework.stereotype.Repository;
 
-import egovframework.itman.member.service.LoginVO;
+import egovframework.itman.member.service.EgovItmanLoginVO;
 
 @Repository("egovItmanMemberDAO")
 public class EgovItmanMemberDAO extends EgovAbstractMapper {
@@ -14,8 +14,8 @@ public class EgovItmanMemberDAO extends EgovAbstractMapper {
 	 * @return LoginVO
 	 * @exception Exception
 	 */
-    public LoginVO actionLogin(LoginVO vo) throws Exception {
-        return (LoginVO) selectOne("actionLogin", vo);
+    public EgovItmanLoginVO actionLogin(EgovItmanLoginVO vo) throws Exception {
+        return (EgovItmanLoginVO) selectOne("actionLogin", vo);
     }
 
 }

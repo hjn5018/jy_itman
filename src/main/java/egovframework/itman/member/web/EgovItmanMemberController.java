@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import egovframework.itman.email.service.EgovItmanEmailService;
 import egovframework.itman.member.service.EgovItmanMemberService;
-import egovframework.itman.member.service.LoginVO;
+import egovframework.itman.member.service.EgovItmanLoginVO;
 
 @Controller
 public class EgovItmanMemberController {
@@ -69,10 +69,10 @@ public class EgovItmanMemberController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/html/user/loginProc.do")
-	public String loginProc(LoginVO loginVO, HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception {
+	public String loginProc(EgovItmanLoginVO loginVO, HttpServletRequest request, RedirectAttributes redirectAttributes) throws Exception {
 		
 		// 1. 일반 로그인 처리
-		LoginVO resultVO = egovItmanMemberService.actionLogin(loginVO);
+		EgovItmanLoginVO resultVO = egovItmanMemberService.actionLogin(loginVO);
 		
 		if (resultVO != null && resultVO.getMemIdx() != null && !resultVO.getMemIdx().equals("")) {
 			request.getSession().setAttribute("loginVO", resultVO);

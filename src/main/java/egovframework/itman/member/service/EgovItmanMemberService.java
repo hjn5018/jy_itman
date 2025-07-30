@@ -8,6 +8,6 @@ public interface EgovItmanMemberService {
 	 * @return LoginVO
 	 * @exception Exception
 	 */
-    public LoginVO actionLogin(LoginVO vo) throws Exception;
+    public EgovItmanLoginVO actionLogin(EgovItmanLoginVO vo) throws Exception;
 
 }

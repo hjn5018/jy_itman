@@ -2,7 +2,7 @@ package egovframework.itman.member.service;
 
 import java.io.Serializable;
 
-public class LoginVO implements Serializable {
+public class EgovItmanLoginVO implements Serializable {
 
 	private static final long serialVersionUID = -8274004534207618049L;
 
